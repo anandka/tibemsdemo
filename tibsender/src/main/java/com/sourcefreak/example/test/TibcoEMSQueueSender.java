@@ -25,7 +25,7 @@ public class TibcoEMSQueueSender {
 		try {
 
 			Vector<Object> data = new Vector<Object>();
-			data.add("Hello Docker is working5!!");
+			data.add("Hello Docker is working!!");
 
 			System.out.println("Sending JMS message to server " + serverUrl + "...");
 

@@ -3,10 +3,19 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.sourcefreak.example.test</groupId>
   <artifactId>tibEms</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>tibEms Maven Webapp</name>
+  
+  <version>0.0.1</version>
+  <name>tibEmsSender Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <repositories>
+
+  <repository>
+    <id>in-project</id>
+    <name>In Project Repo</name>
+    <url>file://${project.basedir}/jars</url>
+  </repository>
+
+  </repositories>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -14,15 +23,59 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-    <!-- http://mvnrepository.com/artifact/javax.jms/javax.jms-api -->
+        
+
+
+        <!-- http://mvnrepository.com/artifact/javax.jms/javax.jms-api -->
   <dependency>
    <groupId>javax.jms</groupId>
    <artifactId>javax.jms-api</artifactId>
    <version>2.0.1</version>
   </dependency>
-    
+
+
+
+
+    <dependency>
+    <groupId>tibjms</groupId>
+    <artifactId>tibjms-jar</artifactId>
+    <version>1</version>
+</dependency>
+
+
+
   </dependencies>
   <build>
-    <finalName>tibEms</finalName>
+
+<plugins>
+
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>attached</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <finalName>tibEmsSender</finalName>
+              <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
+              <archive>
+                <manifest>
+                  <mainClass>com.sourcefreak.example.test.TibcoEMSQueueSender</mainClass>
+                </manifest>
+              </archive>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+
+</plugins>
   </build>
 </project>
+
