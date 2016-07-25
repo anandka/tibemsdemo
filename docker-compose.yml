@@ -1,0 +1,16 @@
+version: '2'
+services:
+  tibsender:
+    image: anandkarwa/tibsender
+    depends_on:
+      - tibreceiver
+  tibreceiver:
+    image: anandkarwa/tibreceiver
+    depends_on:
+      - tibems
+  tibems:
+    image: anandkarwa/tibcoems
+    ports:
+     - "7222:7222"
+     - "2222:22"
+    hostname: tibco-ems
